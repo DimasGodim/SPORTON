@@ -15,7 +15,7 @@ import Link from 'next/link'
 
 export default function Footer(){
     return (
-        <footer className="bg-dark-alternate text-white mt-52">
+        <footer className="bg-dark-alternate text-white">
             <div className='flex justify-between container mx-auto pt-10 pb-20'>
                 
                 <div className='w-105"'>

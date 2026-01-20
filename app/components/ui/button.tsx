@@ -13,7 +13,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex gap-2 duration-300 justify-center items-center cursor-pointer hover:scale-105";
+    "inline-flex gap-2 duration-300 justify-center items-center cursor-pointer hover:scale-101";
 
   const variantStyles = {
     primary: "bg-primary text-white hover:bg-primary/85",

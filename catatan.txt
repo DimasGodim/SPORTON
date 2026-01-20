@@ -1,0 +1,251 @@
+# FRONT-END CHEAT SHEET (HTML SEMANTIC + TAILWIND CSS)
+
+## CATATAN SEMANTIC HTML (WAJIB UNTUK SEO)
+
+* Jangan pernah melupakan semantic HTML agar website SEO-friendly dan mudah dibaca browser serta screen reader
+
+* h1
+  Digunakan untuk judul utama halaman
+  HANYA BOLEH 1 KALI dalam satu halaman
+
+* header
+  Digunakan untuk bagian atas halaman
+  Biasanya membungkus nav
+
+* nav
+  Digunakan khusus untuk navigasi
+  Wajib berada di dalam header (best practice)
+
+* main
+  Digunakan untuk konten utama halaman
+  Hanya boleh 1 kali
+
+* section
+  Digunakan untuk mengelompokkan konten
+  Biasanya punya judul (h2 / h3)
+
+* article
+  Digunakan untuk konten yang berdiri sendiri
+  Contoh: card produk, artikel blog
+
+* footer
+  Digunakan untuk bagian footer halaman
+
+* div
+  Digunakan hanya jika tidak ada tag semantic yang cocok
+
+## ASPECT RATIO
+
+* aspect-square
+  Membuat rasio element menjadi 1:1 (persegi)
+  Cocok untuk image, card, thumbnail
+
+* aspect-video
+  Membuat rasio 16:9
+  Biasanya untuk video
+
+Catatan penting:
+Aspect ratio hanya mengatur perbandingan sisi, bukan ukuran
+Ukuran tetap ditentukan oleh width atau parent
+
+## FLEX (LAYOUT 1 DIMENSI)
+
+* flex
+  Mengubah susunan child menjadi horizontal (default)
+
+* flex-row
+  Child disusun ke samping (default)
+
+* flex-col
+  Child disusun ke bawah
+
+* flex-wrap
+  Membuat child boleh turun ke baris baru
+  Default flex itu nowrap
+
+* flex-1
+  Membuat child berbagi ruang secara proporsional
+
+## GRID (LAYOUT 2 DIMENSI)
+
+* grid
+  Digunakan untuk layout baris dan kolom
+
+* grid-cols-2 / grid-cols-3 / dst
+  Menentukan jumlah kolom
+
+* col-span-*
+  Membuat element mengambil beberapa kolom
+
+Catatan:
+Element child di dalam grid akan stretch mengikuti item tertinggi
+
+## ALIGNMENT (PALING SERING BIKIN BINGUNG)
+
+* items-center
+  Menengahkan child berdasarkan cross-axis
+  Default flex = vertikal
+  WAJIB menggunakan flex atau grid
+
+* justify-center
+  Menengahkan child berdasarkan main-axis
+  Default flex = horizontal
+  WAJIB menggunakan flex
+
+* self-center
+  Menengahkan SATU element saja
+  Parent harus menggunakan flex atau grid
+
+* place-items-center
+  Menengahkan SEMUA child (horizontal + vertical)
+  HANYA BISA DIGUNAKAN DI GRID
+
+* place-self-center
+  Menengahkan SATU item
+  HANYA BISA DIGUNAKAN DI GRID
+
+* text-center
+  Menengahkan TEXT / inline content
+  Tidak berpengaruh ke posisi div
+
+## SPACING
+
+MARGIN (jarak luar element)
+
+* m-*  : semua sisi
+
+* mx-* : horizontal
+
+* my-* : vertikal
+
+* mt-* : top
+
+* mr-* : right
+
+* mb-* : bottom
+
+* ml-* : left
+
+* mx-auto
+  Digunakan untuk menengahkan element secara horizontal
+
+PADDING (jarak dalam element)
+
+* p-*  : semua sisi
+* px-* : horizontal
+* py-* : vertikal
+* pt-* : top
+* pr-* : right
+* pb-* : bottom
+* pl-* : left
+
+## GAP
+
+* gap-*
+  Memberi jarak antar child
+
+* gap-x-*
+  Jarak horizontal
+
+* gap-y-*
+  Jarak vertikal
+
+Gap bisa dipakai di flex maupun grid
+
+## TYPOGRAPHY
+
+FONT WEIGHT
+
+* font-thin      = 100
+* font-light     = 300
+* font-normal    = 400
+* font-medium    = 500
+* font-semibold  = 600
+* font-bold      = 700
+* font-extrabold = 800
+
+FONT SIZE
+
+* text-xs sampai text-9xl
+* Ukuran berbasis rem (responsive)
+
+## CONTAINER
+
+* container
+  Mengatur max-width bawaan framework
+
+* Biasanya dikombinasikan dengan mx-auto
+
+* Tidak wajib digunakan
+  Bisa pakai max-w-* manual
+
+## WIDTH & HEIGHT
+
+* w-full
+  Lebar mengikuti parent
+
+* max-w-*
+  Membatasi lebar maksimal
+
+* h-full
+  Tinggi mengikuti parent
+
+* min-h-screen
+  Minimal setinggi layar
+
+## POSITION
+
+* relative
+  Digunakan sebagai anchor
+
+* absolute
+  Posisi relatif ke parent terdekat yang relative
+
+* fixed
+  Posisi relatif ke viewport
+
+* sticky
+  Gabungan relative dan fixed
+  Harus dikasih top-*
+
+## DISPLAY & VISIBILITY
+
+* block
+
+* inline
+
+* inline-block
+
+* hidden
+  Element hilang dari layout
+
+* opacity-0
+  Element tidak terlihat tapi masih ada di layout
+
+* overflow-hidden
+
+* overflow-auto
+
+## Z-INDEX
+
+* z-0
+* z-10
+* z-50
+* z-[999]
+
+## RESPONSIVE (MOBILE FIRST)
+
+* Default styling = mobile
+* sm:  >= 640px
+* md:  >= 768px
+* lg:  >= 1024px
+* xl:  >= 1280px
+* 2xl: >= 1536px
+
+## GOLDEN RULES
+
+* Layout pakai flex atau grid
+* Text pakai text-*
+* Center element jangan pakai kira-kira
+* Absolute HARUS ada parent relative
+* Jangan kebanyakan div

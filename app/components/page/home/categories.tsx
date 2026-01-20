@@ -40,7 +40,7 @@ export default function CategoriesSection(){
         <section id="category-section" className="container mx-auto">
             <div className="flex justify-between">
                 <h2 className="font-bold text-2xl">Browse By Categories</h2>
-                <Link href="" className="flex gap-2 text-orange-500 text-base items-center cursor-pointer">See All Categories <FiArrowRight color="orange"/></Link>
+                <Link href="" className="flex gap-2 text-primary text-base items-center cursor-pointer">See All Categories <FiArrowRight color="orange"/></Link>
             </div>
             <div className="grid grid-cols-6 gap-12 mt-8 ">
                 {categoryList.map((category) => (
@@ -52,7 +52,7 @@ export default function CategoriesSection(){
                                 height={90}
                                 alt={category.name}
                             />
-                          <div className="mt-3 text-[20px] font-medium text-[#FF5F3F] text-center">{category.name}</div>
+                          <div className="mt-3 text-base font-medium text-primary text-center">{category.name}</div>
                         </div>
                     </Link>
                 ))}

@@ -2,6 +2,8 @@
 import Image from 'next/image';
 import Link from 'next/link'
 import { FiSearch, FiShoppingBag } from "react-icons/fi";
+import CartPopUp from '../ui/cartPopUp';
+import { useState } from 'react';
 
 {/* margin(jarak luar): mx(horizontal), my(vertikal), ml(left), mr(right), mt(top), mb(bottom) */}
 {/* padding(jarak dalam): px(horizontal), py(vertikal), pl(left), pr(right), pt(top), pb(bottom) */}
@@ -21,22 +23,25 @@ import { FiSearch, FiShoppingBag } from "react-icons/fi";
 {/*jika ingin membuat posisi absolute didalam sebuah tempat maka buat tempatnya itu relativ dulu agar component absolute dalam wadahnya tidak keluar*/}
 
 const navMenu = [
-    { name: 'Home', path: '/Home' },
-    { name: 'Category', path: '/Category' },
-    { name: 'Explore Product', path: '/Explore-Product' },
+    { name: 'Home', path: '/#hero-section' },
+    { name: 'Category', path: '/#category-section' },
+    { name: 'Explore Product', path: '/#products-section' },
 ];
 
 let bagValue = 2;
 
 export default function Header(){
+    const [isCartPopupOpen, setIsCartPopupOpen] = useState(false);
+    
     return (
-        <header className='sticky top-0 z-50 bg-white/80 w-screen'>
+        <header className='sticky top-0 z-50 bg-white'>
             <div className="flex justify-between container mx-auto py-7">
                 <Image src="/logo-header.svg" alt="" width={127} height={30} />
                 
                 <nav className="flex gap-24 font-medium text-base">
                     {navMenu.map((menu) => (
-                        <Link 
+                        <Link
+                        scroll={false}
                         key={menu.name} 
                         href={menu.path} 
                         className="relative mx-6 py-2
@@ -50,12 +55,13 @@ export default function Header(){
                     ))}
                 </nav>
 
-                <div className="flex gap-10">
-                    <FiSearch size={24}/>
-                    <div className='relative'>
+                <div className="flex gap-10 relative">
+                    <FiSearch size={24} className='cursor-pointer'/>
+                    <div className='relative cursor-pointer' onClick={() => setIsCartPopupOpen(!isCartPopupOpen)}>
                         <FiShoppingBag size={24}/>
                         <div className="bg-primary rounded-full w-3.5 h-3.5 absolute -top-1 -right-1 text-[10px] text-white text-center">{bagValue}</div>
                     </div>
+                    {isCartPopupOpen && <CartPopUp />}
                 </div>
             </div>
         </header>
