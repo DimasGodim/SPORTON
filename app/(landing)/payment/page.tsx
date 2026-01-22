@@ -1,4 +1,3 @@
-'use client';
 import PaymentOptionsCard from "@/app/components/page/payment/paymentOptions";
 import PaymentStepsCard from "@/app/components/page/payment/paymentSteps";
 
