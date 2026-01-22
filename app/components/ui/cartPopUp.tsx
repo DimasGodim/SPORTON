@@ -2,15 +2,17 @@ import PriceFormat from "@/app/utils/priceFormater";
 import Button from "./button";
 import { FiArrowRight } from "react-icons/fi";
 import { useRouter } from "next/navigation";
-import {cartList} from "@/app/static/data";
 import ProductBag from "./productBag";
+import { UseCartStore } from "@/app/hooks/cart";
 
-const totalPrice = cartList.reduce(
-    (total, item) => total + item.price * item.qty,
-    0
-  );
 
 export default function CartPopUp(){
+    const {items} = UseCartStore();
+    const totalPrice = items.reduce(
+        (total, item) => total + item.price * item.qty,
+        0
+    );
+
     const router = useRouter();
 
     return(

@@ -1,7 +1,11 @@
+'use client';
 import { paymentList } from "@/app/static/data";
 import { FiCreditCard } from "react-icons/fi";
+import { GetAllBanks } from "@/app/api/service/bank";
 
-export default function PaymentOptionsCard() {
+export default async function PaymentOptionsCard() {
+  const bank = await GetAllBanks();
+  
   return (
     <div className="bg-white rounded-lg shadow space-y-4">
       {/* Header */}
@@ -11,7 +15,7 @@ export default function PaymentOptionsCard() {
 
       {/* List */}
       <div className="space-y-4 px-4 pb-4">
-        {paymentList.map((payment, index) => (
+        {bank.map((payment, index) => (
           <div
             key={index}
             className="flex items-center gap-4 border-b border-gray-100 pb-4 last:border-b-0 last:pb-0"
@@ -24,10 +28,10 @@ export default function PaymentOptionsCard() {
             {/* Info */}
             <div className="space-y-1">
               <div className="font-bold">
-                {payment.bank_name}
+                {payment.bankName}
               </div>
               <div className="text-sm text-gray-600">
-                {payment.account_number}
+                {payment.accountNumber}
               </div>
             </div>
 

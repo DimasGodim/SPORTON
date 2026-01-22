@@ -4,23 +4,7 @@ import Link from 'next/link'
 import { FiSearch, FiShoppingBag } from "react-icons/fi";
 import CartPopUp from '../ui/cartPopUp';
 import { useState } from 'react';
-
-{/* margin(jarak luar): mx(horizontal), my(vertikal), ml(left), mr(right), mt(top), mb(bottom) */}
-{/* padding(jarak dalam): px(horizontal), py(vertikal), pl(left), pr(right), pt(top), pb(bottom) */}
-
-{/*w: width, h: height, max-w: max-width, max-h: max-height, min-w: min-width, min-h: min-height */}
-
-{/*flex: susunan asset secara horizontal*/}
-{/*justify-between: 3 asset dengan penempatan pojok kiri tengah pojok kanan intinya ketengah nanti*/}
-
-{/*tag header secara semantic: digunakan untuk keperluan SEO freindly*/}
-{/*tag nav secara semantic: digunakan hanya untuk menyimpan link link utama website dan bukan tempat untuk logo dll*/}
-{/*tag header memiliki value default width 100% kaan kiri*/}
-
-{/*gap-? adalah styling agar asset yang ada didalam situ mempunyai gap segitu*/}
-{/*styling container berfungsi untuk mengatur max width sesuai dengan yang ada di framework (intinya dia magic)*/}
-
-{/*jika ingin membuat posisi absolute didalam sebuah tempat maka buat tempatnya itu relativ dulu agar component absolute dalam wadahnya tidak keluar*/}
+import { UseCartStore } from '@/app/hooks/cart';
 
 const navMenu = [
     { name: 'Home', path: '/#hero-section' },
@@ -32,7 +16,8 @@ let bagValue = 2;
 
 export default function Header(){
     const [isCartPopupOpen, setIsCartPopupOpen] = useState(false);
-    
+    const { items } = UseCartStore();
+
     return (
         <header className='sticky top-0 z-50 bg-white'>
             <div className="flex justify-between container mx-auto py-7">
@@ -59,7 +44,9 @@ export default function Header(){
                     <FiSearch size={24} className='cursor-pointer'/>
                     <div className='relative cursor-pointer' onClick={() => setIsCartPopupOpen(!isCartPopupOpen)}>
                         <FiShoppingBag size={24}/>
-                        <div className="bg-primary rounded-full w-3.5 h-3.5 absolute -top-1 -right-1 text-[10px] text-white text-center">{bagValue}</div>
+                        {items.length ?(
+                            <div className="bg-primary rounded-full w-3.5 h-3.5 absolute -top-1 -right-1 text-[10px] text-white text-center">{items.length}</div>
+                        ): (<></>)}
                     </div>
                     {isCartPopupOpen && <CartPopUp />}
                 </div>

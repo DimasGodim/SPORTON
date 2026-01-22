@@ -10,7 +10,11 @@ import Button from "@/app/components/ui/button";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function ProductActions() {
+import { UseCartStore } from "@/app/hooks/cart";
+import { Product } from "@/app/api/index";
+
+export default function ProductActions({product, stock} : {product: Product; stock: number}) {
+  const { addItem } = UseCartStore();
   const { push } = useRouter();
   const [qty, setQty] = useState(1);
 
@@ -29,19 +33,19 @@ export default function ProductActions() {
           </button>
           <button
             className="cursor-pointer h-1/2 aspect-square flex items-center justify-center"
-            onClick={() => setQty(qty > 1 ? qty - 1 : qty)}
+            onClick={() => setQty(qty > stock ? qty - 1 : qty)}
           >
             <FiChevronDown />
           </button>
         </div>
       </div>
 
-      <Button>
+      <Button onClick={() =>addItem(product, qty)}>
         <FiShoppingBag size={24} />
         Add to Cart
       </Button>
 
-      <Button variant="dark" onClick={() => push("/checkout")}>
+      <Button variant="dark" onClick={() => {addItem(product); push("/checkout");}}>
         Checkout Now
         <FiArrowRight size={24} />
       </Button>

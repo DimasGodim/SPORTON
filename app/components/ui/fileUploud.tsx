@@ -3,11 +3,7 @@
 import { useRef, useState } from "react";
 import { FiImage, FiTrash2, FiUploadCloud } from "react-icons/fi";
 
-type TFileUploadProps = {
-  onFileSelect?: (file: File | null) => void;
-};
-
-export default function FileUpload({ onFileSelect }: TFileUploadProps) {
+export default function FileUpload({ onFileSelect }: {onFileSelect?: (file: File | null) => void;}) {
   const [file, setFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 

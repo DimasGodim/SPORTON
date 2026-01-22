@@ -1,9 +1,6 @@
 import Image from "next/image";
 
 export default function OrderConfirmed(){
-    const reloadOrderStatus = () => {
-        window.location.reload();
-    };
     
     return(
         <div className="bg-white w-160 p-16 flex flex-col justify-center items-center gap-6">

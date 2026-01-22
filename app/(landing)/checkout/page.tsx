@@ -2,18 +2,54 @@
 
 import Button from "@/app/components/ui/button";
 import ProductBag from "@/app/components/ui/productBag";
-import { cartList } from "@/app/static/data";
 import PriceFormat from "@/app/utils/priceFormater";
+
 import { FiCreditCard } from "react-icons/fi";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-const totalPrice = cartList.reduce(
-  (total, item) => total + item.price * item.qty,
-  0
-);
+import { UseCartStore, CustomerInfo } from "@/app/hooks/cart";
 
-export default function checkoutPage() {
+export default function CheckoutPage() {
   const router = useRouter();
+
+  const { setCustomerInfo, items } = UseCartStore();
+
+  const [formData, setFormData] = useState<CustomerInfo>({
+    customerName: "",
+    customerContact: "",
+    customerAddress: "",
+  });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handlePayment = () => {
+    if (
+      !formData.customerName.trim() ||
+      !formData.customerContact.trim() ||
+      !formData.customerAddress.trim()
+    ) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    setCustomerInfo(formData);
+    router.push("/payment");
+  };
+
+  const totalPrice = items.reduce(
+    (total, item) => total + item.price * item.qty,
+    0
+  );
 
   return (
     <main className="bg-gray-100 min-h-[80vh] flex items-center justify-center">
@@ -30,39 +66,45 @@ export default function checkoutPage() {
             </div>
 
             <div className="space-y-4 px-4 pb-4">
-              <div className="input-group space-y-2">
-                <label htmlFor="full_name" className="block text-sm font-primary text-dark">
+              <div className="space-y-2">
+                <label className="block text-sm font-medium">
                   Full Name
                 </label>
                 <input
                   type="text"
-                  id="full_name"
+                  name="customerName"
+                  value={formData.customerName}
+                  onChange={handleInputChange}
                   placeholder="Enter your full name"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                  className="w-full px-4 py-3 border rounded-lg"
                 />
               </div>
 
-              <div className="input-group space-y-2">
-                <label htmlFor="wa_number" className="block text-sm font-primary text-dark">
+              <div className="space-y-2">
+                <label className="block text-sm font-medium">
                   Whatsapp Number
                 </label>
                 <input
                   type="text"
-                  id="wa_number"
+                  name="customerContact"
+                  value={formData.customerContact}
+                  onChange={handleInputChange}
                   placeholder="Enter your whatsapp number"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition"
+                  className="w-full px-4 py-3 border rounded-lg"
                 />
               </div>
 
-              <div className="input-group space-y-2">
-                <label htmlFor="shipping_address" className="block text-sm font-primary text-dark">
+              <div className="space-y-2">
+                <label className="block text-sm font-medium">
                   Shipping Address
                 </label>
                 <textarea
-                  id="shipping_address"
+                  name="customerAddress"
                   rows={7}
+                  value={formData.customerAddress}
+                  onChange={handleInputChange}
                   placeholder="Enter your shipping address"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition resize-none"
+                  className="w-full px-4 py-3 border rounded-lg resize-none"
                 />
               </div>
             </div>
@@ -74,22 +116,22 @@ export default function checkoutPage() {
               <h2 className="font-bold text-lg">Cart Items</h2>
             </div>
 
-            <div className="overflow-auto max-h-75">
+            <div className="overflow-auto max-h-80">
               <ProductBag />
             </div>
 
             <div className="flex justify-between">
-              <div className="text-sm text-dark font-bold">Total</div>
-              <div className="text-xs text-primary">
+              <span className="text-sm font-bold">Total</span>
+              <span className="text-sm text-primary">
                 {PriceFormat(totalPrice)}
-              </div>
+              </span>
             </div>
 
             <Button
               variant="dark"
               size="normal"
               className="w-full"
-              onClick={() => router.push("/payment")}
+              onClick={handlePayment}
             >
               <FiCreditCard />
               Proceed to Payment

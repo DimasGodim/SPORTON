@@ -120,3 +120,30 @@ export const paymentList = [
     account_number: 123891283912,
   },
 ];
+
+export const categoryList = [
+  {
+    name: "Running",
+    imgUrl: "/icon/category-running.svg",
+  },
+  {
+    name: "Tennis",
+    imgUrl: "/icon/category-tennis.svg",
+  },
+  {
+    name: "Basketball",
+    imgUrl: "/icon/category-basketball.svg",
+  },
+  {
+    name: "Football",
+    imgUrl: "/icon/category-football.svg",
+  },
+  {
+    name: "Badminton",
+    imgUrl: "/icon/category-badminton.svg",
+  },
+  {
+    name: "Swimming",
+    imgUrl: "/icon/category-swimming.svg",
+  },
+];

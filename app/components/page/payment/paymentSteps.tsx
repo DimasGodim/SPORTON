@@ -5,15 +5,57 @@ import FileUpload from "../../ui/fileUploud";
 import PriceFormat from "@/app/utils/priceFormater";
 import Button from "../../ui/button";
 import { useRouter } from "next/navigation";
-import { cartList } from "@/app/static/data";
-
-const totalPrice = cartList.reduce(
-  (total, item) => total + item.price * item.qty,
-  0
-);
+import { UseCartStore } from "@/app/hooks/cart";
+import { TransactionCheckout } from "@/app/api/service/transaction";
+import { useState } from "react";
 
 export default function PaymentStepsCard() {
+  const { items, customerInfo, reset } = UseCartStore();
+  const totalPrice = items.reduce(
+    (total, item) => total + item.price * item.qty,
+    0
+  );
   const router = useRouter();
+
+  const [file, setFile] = useState<File | null>();
+
+  const handleConfirmPayment = async () => {
+    if (!file) {
+      alert("Please upload your payment receipt!");
+      return;
+    }
+
+    if (!customerInfo) {
+      alert("Customer information is missing, please return to checkout");
+      router.push("/checkout");
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("customerName", customerInfo.customerName);
+      formData.append(
+        "customerContact",
+        customerInfo.customerContact!.toString()
+      );
+      formData.append("customerAddress", customerInfo.customerAddress);
+      formData.append("image", file);
+      formData.append(
+        "purchasedItems",
+        JSON.stringify(
+          items.map((item) => ({ productId: item._id, qty: item.qty }))
+        )
+      );
+      formData.append("totalPayment", totalPrice!.toString());
+
+      const res = await TransactionCheckout(formData);
+
+      reset();
+      router.push(`/order-status/${res._id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="bg-white rounded-lg shadow space-y-4">
@@ -39,7 +81,7 @@ export default function PaymentStepsCard() {
           </li>
         </ol>
 
-        <FileUpload />
+        <FileUpload onFileSelect={setFile} />
       </div>
 
       {/* Total */}
@@ -52,11 +94,7 @@ export default function PaymentStepsCard() {
 
       {/* Action */}
       <div className="px-4 pb-4">
-        <Button
-          variant="dark"
-          className="w-full"
-          onClick={() => router.push("/order-status")}
-        >
+        <Button variant="dark" className="w-full" onClick={handleConfirmPayment}>
           <FiCheckCircle color="white" />
           Upload Receipt & Confirm
         </Button>
