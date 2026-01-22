@@ -1,6 +1,3 @@
-'use client';
-
-import { useState } from "react";
 import OrderSubmited from "@/app/components/page/orderStatus/orderSubmited";
 import OrderConfirmed from "@/app/components/page/orderStatus/orderConfirm";
 import OrderReject from "@/app/components/page/orderStatus/orderReject";
