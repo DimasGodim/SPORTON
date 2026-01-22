@@ -1,5 +1,3 @@
-'use client';
-import { paymentList } from "@/app/static/data";
 import { FiCreditCard } from "react-icons/fi";
 import { GetAllBanks } from "@/app/api/service/bank";
 
