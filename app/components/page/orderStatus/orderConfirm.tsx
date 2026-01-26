@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function OrderConfirmed(){
     
     return(
-        <div className="bg-white w-160 p-16 flex flex-col justify-center items-center gap-6">
+        <div className="bg-white w-160 p-16 flex flex-col justify-center items-center gap-6 rounded-lg shadow-lg">
             <Image src="/icon-order-confirmed.svg" alt="" width={117} height={117}/>
             <h2 className="text-2xl font-semibold">Order Confirmed!!</h2>
             <p className="text-center">

@@ -16,9 +16,9 @@ import Link from 'next/link'
 export default function Footer(){
     return (
         <footer className="bg-dark-alternate text-white">
-            <div className='flex justify-between container mx-auto pt-10 pb-20'>
+            <div className='flex justify-between container mx-auto pt-10 pb-20 px-6'>
                 
-                <div className='w-105"'>
+                <div className='w-105'>
                     <Image src='/logo-footer.svg' alt="" width={127} height={30}/>
                     <p className='mt-8'>Engineered for endurance and designed for speed. <br />Experience gear that moves as fast as you do.</p>
                 </div>
@@ -39,7 +39,7 @@ export default function Footer(){
                 </div>
             </div>
             <div className='border-t border-t-white/15'>
-                <div className='container mx-auto py-6.5 flex justify-between'>
+                <div className='container mx-auto py-6.5 flex justify-between px-6'>
                     <div className='w-105'>SportsOn © 2025 All Rights Reserverd.</div>
                     <div className="grid grid-cols-2 w-105">
                         <Link href="">Privacy Policy</Link>

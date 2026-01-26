@@ -17,7 +17,7 @@ export default function HeroSection(){
                 <Image src="/img-basketball.svg" alt="" width={423} height={423} className="grayscale absolute left-0 -top-20" />
                 <div className="w-full ml-40">
                     
-                    <div className=" ml-3 inline-flex items-center bg-orange-500/15 text-primary px-4 py-2 rounded-full italic">
+                    <div className="ml-3 inline-flex items-center bg-orange-500/15 text-primary px-4 py-2 rounded-full italic">
                     Friday Sale, 50%
                     </div>
                     <h1 className="font-extrabold text-8xl italic bg-linear-to-b leading-tight from-black to-[#979797] bg-clip-text text-transparent">

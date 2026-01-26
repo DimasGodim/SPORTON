@@ -58,47 +58,49 @@ export default function PaymentStepsCard() {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow space-y-4">
-      {/* Header */}
-      <div className="border-b border-gray-200 p-4">
-        <h1 className="font-bold text-lg">Payment Steps</h1>
+    <div className="bg-white rounded-xl shadow-sm overflow-hidden h-fit">
+      <div className="text-dark px-8 py-6 border-b border-gray-300">
+        <h2 className="font-bold text-xl">Payment Steps</h2>
       </div>
 
-      {/* Steps + Upload */}
-      <div className="border-b border-gray-200 px-4 pb-4 space-y-4">
-        <ol className="list-decimal text-xs pl-4 space-y-3">
-          <li>
-            Transfer the total amount of <b>{PriceFormat(totalPrice)}</b> to your preferred
-            bank account listed under 'Payment Options' (BCA, Mandiri, or BTPN).
-          </li>
-          <li>
-            After completing the transfer, <b>keep the payment receipt</b> or a
-            screenshot of the transfer confirmation.
-          </li>
-          <li>
-            Upload the payment receipt/screenshot using the{" "}
-            <b>'Upload Receipt & Confirm'</b> button below.
-          </li>
-        </ol>
-
-        <FileUpload onFileSelect={setFile} />
-      </div>
-
-      {/* Total */}
-      <div className="flex justify-between px-4">
-        <div className="font-semibold text-dark">Total</div>
-        <div className="text-primary">
-          {PriceFormat(totalPrice)}
+      <div className="p-8 space-y-8">
+        <div className="space-y-4">
+          <ol className="list-decimal font-semibold text-dark pl-2 flex flex-col gap-4 mb-5">
+            <li>
+              Transfer the total amount of <b>Rp. 1.035.000</b> to your preferred
+              bank account listed under 'Payment Options' (BCA, Mandiri, or BTPN).
+            </li>
+            <li>
+              After completing the transfer, <b>keep the payment receipt</b> or a
+              screenshot of the transfer confirmation. This will be needed for the
+              next step.
+            </li>
+            <li>
+              Upload the payment receipt/screenshot using the{" "}
+              <b>'Upload Receipt & Confirm'</b> button below to validate your
+              transaction.
+            </li>
+          </ol>
         </div>
-      </div>
 
-      {/* Action */}
-      <div className="px-4 pb-4">
-        <Button variant="dark" className="w-full" onClick={handleConfirmPayment}>
-          <FiCheckCircle color="white" />
-          Upload Receipt & Confirm
+        <div className="border-t border-gray-200 pt-8">
+          <p className="font-semibold text-dark mb-4">Upload Your Payment Receipt</p>
+          <FileUpload onFileSelect={setFile} />
+        </div>
+
+        <div className="border-t border-gray-200 pt-6 flex justify-between items-center">
+          <div className="font-semibold text-dark">Total Amount</div>
+          <div className=" font-black text-primary">
+            {PriceFormat(totalPrice)}
+          </div>
+        </div>
+
+        <Button variant="dark" size="big" className="w-full" onClick={handleConfirmPayment}>
+          <FiCheckCircle size={20} />
+          Upload Receipt & Confirm Order
         </Button>
       </div>
     </div>
   );
 }
+      

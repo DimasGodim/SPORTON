@@ -11,10 +11,10 @@ export default async function ProductPage({params,}: {params: Promise<{ id: stri
 
   return (
     <main className="container mx-auto my-32 flex gap-12 justify-center items-center">
-      <div className="bg-primary-light aspect-square min-w-140 flex justify-center items-center">
+      <div className="bg-primary-light aspect-square min-w-140 flex justify-center items-center rounded-lg">
         <Image src={GetImageUrl(product.imageUrl)} alt="" width={550} height={550} className="aspect-square w-full" />
       </div>
-      <div className="space-y-8 ">
+      <div className="space-y-8">
         <h1 className="font-bold text-dark text-5xl">{product.name}</h1>
         <div className="bg-primary-light rounded-full text-primary py-2 px-6 w-fit">{[product.category.name]}</div>
         <p className="leading-loose">The SportsOn HyperSoccer v2 is engineered for the player who demands

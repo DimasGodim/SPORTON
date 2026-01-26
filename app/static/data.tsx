@@ -147,3 +147,27 @@ export const categoryList = [
     imgUrl: "/icon/category-swimming.svg",
   },
 ];
+
+const transactionData = [
+  {
+    date: "23/02/2026 19:32",
+    customer: "John Doe",
+    contact: "+123123123 ",
+    total: 1500000,
+    status: "pending",
+  },
+  {
+    date: "23/02/2026 19:32",
+    customer: "John Doe 2",
+    contact: "+123123123 ",
+    total: 2500000,
+    status: "rejected",
+  },
+  {
+    date: "23/02/2026 19:32",
+    customer: "John Doe 3",
+    contact: "+123123123 ",
+    total: 1000000,
+    status: "paid",
+  },
+];

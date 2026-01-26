@@ -10,7 +10,7 @@ export default function OrderSubmited(){
     };
     
     return(
-        <div className="bg-white w-160 p-16 flex flex-col justify-center items-center gap-6">
+        <div className="bg-white w-160 p-16 flex flex-col justify-center items-center gap-6 rounded-lg shadow-lg">
             <Image src="/icon-order-submitted.svg" alt="" width={117} height={117}/>
             <h2 className="text-2xl font-semibold">Order Submitted !!</h2>
             <p className="text-center">

@@ -16,17 +16,25 @@ export default function CartPopUp(){
     const router = useRouter();
 
     return(
-        <div className="bg-white absolute top-12 right-0 shadow-xl shadow-black/10 border border-gray-200 w-90 z-100">
-            <div className="w-full text-center font-bold text-base border-b border-gray-200 py-4">Shopping Cart</div>
+        <div className="absolute top-14 right-0 bg-white rounded-lg shadow-2xl border border-gray-200 w-96 z-50 overflow-hidden">
+            <div className="w-full font-bold text-base border-b border-gray-200 px-6 py-4 bg-gray-50">Shopping Cart</div>
             
-            <ProductBag />
-            <div className="flex justify-between items-center px-4 py-2">
-                <div className="text-sm font-bold">Total</div>
-                <div className="text-xs text-primary">{PriceFormat(totalPrice)}</div>
+            <div className="max-h-96 overflow-auto">
+                <ProductBag />
             </div>
-            <div className="w-full px-4 pb-4">
-                <Button variant="dark" size="small" className="w-full" onClick={() => router.push('/checkout')}>
-                Checkout Now <FiArrowRight />
+            
+            <div className="border-t border-gray-200 px-6 py-4 space-y-4">
+                <div className="flex justify-between items-center">
+                    <div className="font-semibold text-dark">Total:</div>
+                    <div className="text-lg font-bold text-primary">{PriceFormat(totalPrice)}</div>
+                </div>
+                <Button 
+                    variant="dark" 
+                    size="normal" 
+                    className="w-full" 
+                    onClick={() => router.push('/checkout')}
+                >
+                    Checkout <FiArrowRight size={18}/>
                 </Button>
             </div>
         </div>

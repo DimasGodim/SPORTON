@@ -13,18 +13,18 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex gap-2 duration-300 justify-center items-center cursor-pointer hover:scale-101";
+    "inline-flex gap-2 duration-300 justify-center items-center cursor-pointer font-medium rounded-lg transition-all hover:shadow-lg";
 
   const variantStyles = {
-    primary: "bg-primary text-white hover:bg-primary/85",
-    dark: "bg-dark text-white hover:bg-dark/85",
-    ghost: "bg-transparent hover:bg-gray-100 text-dark",
+    primary: "bg-primary text-white hover:bg-primary/90 active:scale-95",
+    dark: "bg-dark text-white hover:bg-dark/90 active:scale-95",
+    ghost: "bg-transparent text-dark hover:bg-gray-100 active:bg-gray-200",
   };
 
   const sizeStyles = {
-    small: "py-[10px] px-7",
-    normal: "py-4 px-9",
-    big: "py-5 px-11",
+    small: "py-2 px-4 text-sm",
+    normal: "py-3 px-6 text-base",
+    big: "py-4 px-8 text-lg",
   };
 
   return (

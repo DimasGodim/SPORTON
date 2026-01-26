@@ -21,15 +21,15 @@ export default function ProductSection({ products } : { products : Product[] }  
             <div className="grid grid-cols-4 gap-x-5 gap-y-10">
                 {products.map((product) => (
                     <Link href={`/product/${product._id}`} className="w-full p-1.5 hover:drop-shadow-xl duration-300" key={product._id}>
-                        <div className="bg-[#F4EBEB] aspect-square w-full flex justify-center items-center relative">
+                        <div className="bg-[#F4EBEB] aspect-square w-full flex justify-center items-center relative rounded-lg overflow-hidden">
                             <Image src={GetImageUrl(product.imageUrl)} alt="" className="object-contain" fill />
-                            <button className="w-10 h-10 bg-orange-500 absolute right-3 top-3 flex justify-center items-center hover:bg-orange-600 duration-300" onClick={(e) => handleAddtoCart(e, product)}>
+                            <button className="w-10 h-10 bg-orange-500 absolute right-3 top-3 flex justify-center items-center hover:bg-orange-600 duration-300 rounded-lg" onClick={(e) => handleAddtoCart(e, product)}>
                                 <FiPlus color="white" size={20}/>   
                             </button>
                         </div>
                         <div className="mt-4 relative">
                             <h2 className="text-[18px] font-medium">{product.name}</h2>
-                            <div className="font-dark">{product.category.name}</div>
+                            <div className="text-gray-600 text-sm">{product.category.name}</div>
                             <div className="absolute right-0 bottom-0 text-primary text-base font-medium">{PriceFormat(product.price)}</div>
                         </div>
                     </Link>

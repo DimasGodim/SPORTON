@@ -169,6 +169,10 @@ FONT SIZE
 * text-xs sampai text-9xl
 * Ukuran berbasis rem (responsive)
 
+FONT RENDER DI LAYOUT
+* antialiased untuk font lebih halus, tipis
+* subpixel-antialiased untuk font sedikit lebih tebal & tajam
+
 ## CONTAINER
 
 * container

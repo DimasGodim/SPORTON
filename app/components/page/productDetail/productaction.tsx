@@ -21,18 +21,18 @@ export default function ProductActions({product, stock} : {product: Product; sto
   return (
     <div className="flex gap-8">
       <div className="border border-gray-500 inline-flex w-fit min-w-20.5">
-        <div className="aspect-square text-xl font-medium border-r border-gray-500 flex justify-center items-center">
+        <div className="aspect-square text-xl font-medium border-r border-gray-500 flex justify-center items-center px-4 py-2">
           <span>{qty}</span>
         </div>
         <div className="flex flex-col">
           <button
-            className="border-b border-gray-500 cursor-pointer h-1/2 aspect-square flex items-center justify-center"
+            className="border-b border-gray-500 cursor-pointer h-1/2 aspect-square flex items-center justify-center hover:bg-gray-100 transition-colors"
             onClick={() => setQty(qty + 1)}
           >
             <FiChevronUp />
           </button>
           <button
-            className="cursor-pointer h-1/2 aspect-square flex items-center justify-center"
+            className="cursor-pointer h-1/2 aspect-square flex items-center justify-center hover:bg-gray-100 transition-colors"
             onClick={() => setQty(qty > stock ? qty - 1 : qty)}
           >
             <FiChevronDown />
