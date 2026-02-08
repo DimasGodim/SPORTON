@@ -27,14 +27,14 @@ export const GetAllTransactions = async (): Promise<Transaction[]> => {
 
 export const UpdateTransaction = async (
   id: string,
-  data: FormData,
+  data: { status: "paid" | "rejected" },
 ): Promise<Transaction> => {
   const res =  await FetchApi<Transaction>(`/transactions/${id}`, {
     method: "PUT",
     headers: {
       ...GetAuthHeaders(),
     },
-    body: data,
+    body: JSON.stringify(data),
   });
   return res
 

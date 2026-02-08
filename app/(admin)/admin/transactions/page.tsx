@@ -36,9 +36,7 @@ export default function TransactionManagement ()  {
     status: "paid" | "rejected",
   ) => {
     try {
-      const formData = new FormData();
-      formData.append("status", status);
-      await UpdateTransaction(id, formData);
+      await UpdateTransaction(id, { status });
 
 
       await fetchTransactions();
