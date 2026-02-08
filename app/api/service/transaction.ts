@@ -29,10 +29,11 @@ export const UpdateTransaction = async (
   id: string,
   data: { status: "paid" | "rejected" },
 ): Promise<Transaction> => {
-  const res =  await FetchApi<Transaction>(`/transactions/${id}`, {
+  const res = await FetchApi<Transaction>(`/transactions/${id}`, {
     method: "PUT",
     headers: {
       ...GetAuthHeaders(),
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   });
