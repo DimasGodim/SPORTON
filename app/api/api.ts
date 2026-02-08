@@ -17,6 +17,7 @@ export async function FetchApi <data>(endpoint: string, options?: RequestInit): 
 
 export function GetImageUrl(path: string){
     if (path.startsWith("http")) return path;
+    if (path.startsWith("https")) return path;
     return `${process.env.NEXT_PUBLIC_API_ROOT}/${path}`; 
 }
 
